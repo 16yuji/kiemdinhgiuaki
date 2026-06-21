@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đối soát doanh thu - Travel Mate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="http://127.0.0.1:8000/css/travel-mate-theme.css" rel="stylesheet">
+    </head>
+<body class="tm-dashboard">
+<div class="tm-dashboard-layout">
+    <aside class="tm-sidebar">
+        <div class="tm-sidebar-brand">
+            <a href="http://127.0.0.1:8000/dashboard" class="tm-brand text-white">
+                <span class="tm-logo"><i class="bi bi-compass-fill"></i></span>
+                <span class="tm-brand-text">
+                    <strong class="text-white">Travel Mate</strong>
+                    <small class="text-white-50">Admin Portal</small>
+                </span>
+            </a>
+        </div>
+
+        <div class="tm-sidebar-nav">
+                            <ul class="nav nav-pills flex-column gap-2">
+            <li class="nav-item">
+            <a href="http://127.0.0.1:8000/admin/dashboard" class="nav-link text-white ">
+                <i class="bi bi-speedometer2 me-2"></i>
+                <span>Tổng quan</span>
+            </a>
+        </li>
+            <li class="nav-item">
+            <a href="http://127.0.0.1:8000/admin/users" class="nav-link text-white ">
+                <i class="bi bi-people me-2"></i>
+                <span>Quản lý người dùng</span>
+            </a>
+        </li>
+            <li class="nav-item">
+            <a href="http://127.0.0.1:8000/admin/partner-requests" class="nav-link text-white ">
+                <i class="bi bi-person-check me-2"></i>
+                <span>Duyệt đối tác</span>
+            </a>
+        </li>
+            <li class="nav-item">
+            <a href="http://127.0.0.1:8000/admin/hotels" class="nav-link text-white ">
+                <i class="bi bi-buildings me-2"></i>
+                <span>Quản lý khách sạn</span>
+            </a>
+        </li>
+            <li class="nav-item">
+            <a href="http://127.0.0.1:8000/admin/hotel-appeals" class="nav-link text-white ">
+                <i class="bi bi-shield-exclamation me-2"></i>
+                <span>Yêu cầu xem xét</span>
+            </a>
+        </li>
+            <li class="nav-item">
+            <a href="http://127.0.0.1:8000/admin/reviews" class="nav-link text-white ">
+                <i class="bi bi-star-half me-2"></i>
+                <span>Kiểm duyệt đánh giá</span>
+            </a>
+        </li>
+            <li class="nav-item">
+            <a href="http://127.0.0.1:8000/admin/settlements" class="nav-link text-white active">
+                <i class="bi bi-cash-stack me-2"></i>
+                <span>Đối soát doanh thu</span>
+            </a>
+        </li>
+            <li class="nav-item">
+            <a href="http://127.0.0.1:8000/admin/refunds" class="nav-link text-white ">
+                <i class="bi bi-arrow-counterclockwise me-2"></i>
+                <span>Xử lý hoàn tiền</span>
+            </a>
+        </li>
+    
+    <li class="nav-item mt-3 pt-3 border-top border-white border-opacity-10">
+        <a href="http://127.0.0.1:8000/home" class="nav-link text-white">
+            <i class="bi bi-globe2 me-2"></i>
+            <span>Xem website</span>
+        </a>
+    </li>
+</ul>
+                    </div>
+
+        <div class="position-absolute bottom-0 start-0 end-0 p-3" style="z-index:2;">
+            <div class="p-3 rounded-4" style="background: rgba(255,255,255,.11); border: 1px solid rgba(255,255,255,.14); backdrop-filter: blur(18px);">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="tm-logo" style="width:42px;height:42px;border-radius:15px;">Q</div>
+                    <div class="min-w-0">
+                        <div class="fw-bold text-white text-truncate">Quản trị viên</div>
+                        <div class="small text-white-50">Online • Admin</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <div class="tm-dashboard-main">
+        <nav class="navbar tm-dashboard-topbar">
+            <div class="container-fluid px-4">
+                <div>
+                    <div class="tm-eyebrow mb-1"><i class="bi bi-stars"></i> Admin Portal</div>
+                    <h1 class="h4 fw-black mb-0" style="font-weight:900;letter-spacing:0;">Đối soát doanh thu</h1>
+                </div>
+
+                <div class="d-flex align-items-center gap-2">
+                    <a href="http://127.0.0.1:8000/home" class="btn tm-btn-light d-none d-lg-inline-flex">
+                        <i class="bi bi-globe2 me-1"></i> Website
+                    </a>
+                    <a href="http://127.0.0.1:8000/profile" class="btn tm-btn-light">
+                        <i class="bi bi-person-circle me-1"></i>
+                        <span class="d-none d-md-inline">Quản trị viên</span>
+                    </a>
+                    <form method="POST" action="http://127.0.0.1:8000/logout" class="js-confirm-form" data-confirm="Bạn muốn đăng xuất khỏi Travel Mate?">
+                        <input type="hidden" name="_token" value="Q5jzvSDoSrsAvpm8yIC9nAzpz55KiovbMvwxp8cS" autocomplete="off">                        <button class="btn btn-outline-danger" type="submit">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span class="d-none d-md-inline">Đăng xuất</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        <main class="tm-dashboard-content">
+            <div class="tm-page-hero" data-aos="fade-up">
+                <div class="row align-items-center g-3">
+                    <div class="col-lg-8">
+                        <div class="tm-eyebrow"><i class="bi bi-compass"></i> Travel Mate Workspace</div>
+                        <h2 class="tm-heading-md mb-2">Xin chào, Quản trị viên.</h2>
+                        <p class="tm-lead mb-0">Điều phối người dùng, duyệt khách sạn, hoàn tiền và đối soát.</p>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <div class="d-inline-flex align-items-center gap-2 px-3 py-2 rounded-pill" style="background:rgba(255,255,255,.72);border:1px solid rgba(6,13,170,.11);font-weight:900;">
+                            <i class="bi bi-calendar2-week text-primary"></i>
+                            07/06/2026
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            
+            <div data-aos="fade-up" data-aos-delay="80">
+                
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="mb-1">Danh sách giao dịch tài chính</h4>
+        <p class="text-muted mb-0">
+            Theo dõi doanh thu, công nợ hoàn tiền sau settlement và số tiền thực chuyển cho Owner.
+        </p>
+    </div>
+</div>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <form method="GET" action="http://127.0.0.1:8000/admin/settlements" class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Từ khóa</label>
+                <input
+                    type="text"
+                    name="keyword"
+                    class="form-control"
+                    value=""
+                    placeholder="Mã đơn, khách sạn, tên/email Owner"
+                >
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Trạng thái</label>
+                <select name="status" class="form-select">
+                    <option value="">-- Tất cả --</option>
+                    <option value="temporary_recorded" >
+                        Ghi nhận tạm
+                    </option>
+                    <option value="waiting_settlement" >
+                        Chờ đối soát
+                    </option>
+                    <option value="settled" >
+                        Đã đối soát
+                    </option>
+                    <option value="adjusted" >
+                        Đã điều chỉnh
+                    </option>
+                    <option value="postponed" >
+                        Tạm hoãn
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-md-2 d-flex align-items-end gap-2">
+                <button class="btn btn-primary w-100">Lọc</button>
+                <a href="http://127.0.0.1:8000/admin/settlements" class="btn btn-outline-secondary">
+                    Xóa
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="tm-neutral-box mb-4">
+    <strong>Pending deductions</strong> là các khoản OwnerAdjustment phát sinh khi Admin hoàn tiền cho khách sau khi booking cũ đã được settlement. Khi xác nhận chuyển tiền, hệ thống giữ nguyên owner_amount lịch sử và chỉ giảm số tiền thực chuyển trong bản ghi Settlement.
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                <tr>
+                    <th>Mã đơn</th>
+                    <th>Khách sạn</th>
+                    <th>Owner</th>
+                    <th>Tổng tiền</th>
+                    <th>Phí nền tảng</th>
+                    <th>Trả Owner</th>
+                    <th>Chờ khấu trừ</th>
+                    <th>Thực chuyển dự kiến</th>
+                    <th>Trạng thái</th>
+                    <th class="text-end">Thao tác</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                                                        <tr>
+                        <td>BK20260607014147EQ36</td>
+
+                        <td>
+                            <div class="fw-semibold">Travel Mate Demo - Saigon Central Suites</div>
+                            <div class="text-muted small">
+                                07/06/2026
+                                -
+                                08/06/2026
+                            </div>
+                        </td>
+
+                        <td>
+                            <div>Owner City Collection</div>
+                            <div class="text-muted small">owner.city@travelmate.test</div>
+                        </td>
+
+                        <td>1.150.000đ</td>
+                        <td>172.500đ</td>
+                        <td class="fw-semibold text-primary">
+                            977.500đ
+                        </td>
+                        <td class="text-danger">
+                            1.470.500đ
+                        </td>
+                        <td class="fw-semibold text-success">
+                            0đ
+                        </td>
+
+                        <td>
+                            <span class="badge bg-warning text-dark">Ghi nhận tạm</span>
+                                </td>
+
+                        <td class="text-end">
+                            <a href="http://127.0.0.1:8000/admin/settlements/23" class="btn btn-sm btn-outline-primary">
+                                Xem
+                            </a>
+
+                                                            <a href="http://127.0.0.1:8000/admin/settlements/23" class="btn btn-sm btn-success">
+                                    Đối soát
+                                </a>
+                                                    </td>
+                    </tr>
+                                                        <tr>
+                        <td>BK20260607013834F5IS</td>
+
+                        <td>
+                            <div class="fw-semibold">Travel Mate Demo - Saigon Central Suites</div>
+                            <div class="text-muted small">
+                                07/06/2026
+                                -
+                                08/06/2026
+                            </div>
+                        </td>
+
+                        <td>
+                            <div>Owner City Collection</div>
+                            <div class="text-muted small">owner.city@travelmate.test</div>
+                        </td>
+
+                        <td>820.000đ</td>
+                        <td>123.000đ</td>
+                        <td class="fw-semibold text-primary">
+                            697.000đ
+                        </td>
+                        <td class="text-danger">
+                            1.470.500đ
+                        </td>
+                        <td class="fw-semibold text-success">
+                            0đ
+                        </td>
+
+                        <td>
+                            <span class="badge bg-warning text-dark">Ghi nhận tạm</span>
+                                </td>
+
+                        <td class="text-end">
+                            <a href="http://127.0.0.1:8000/admin/settlements/22" class="btn btn-sm btn-outline-primary">
+                                Xem
+                            </a>
+
+                                                            <a href="http://127.0.0.1:8000/admin/settlements/22" class="btn btn-sm btn-success">
+                                    Đối soát
+                                </a>
+                                                    </td>
+                    </tr>
+                                                        <tr>
+                        <td>BK202606040417524A0E</td>
+
+                        <td>
+                            <div class="fw-semibold">Travel Mate Demo - Hanoi Lakeside Boutique</div>
+                            <div class="text-muted small">
+                                04/06/2026
+                                -
+                                05/06/2026
+                            </div>
+                        </td>
+
+                        <td>
+                            <div>Owner North Collection</div>
+                            <div class="text-muted small">owner.north@travelmate.test</div>
+                        </td>
+
+                        <td>595.000đ</td>
+                        <td>89.250đ</td>
+                        <td class="fw-semibold text-primary">
+                            505.750đ
+                        </td>
+                        <td class="text-danger">
+                            -
+                        </td>
+                        <td class="fw-semibold text-success">
+                            505.750đ
+                        </td>
+
+                        <td>
+                            <span class="badge bg-warning text-dark">Ghi nhận tạm</span>
+                                </td>
+
+                        <td class="text-end">
+                            <a href="http://127.0.0.1:8000/admin/settlements/19" class="btn btn-sm btn-outline-primary">
+                                Xem
+                            </a>
+
+                                                            <a href="http://127.0.0.1:8000/admin/settlements/19" class="btn btn-sm btn-success">
+                                    Đối soát
+                                </a>
+                                                    </td>
+                    </tr>
+                                                        <tr>
+                        <td>TMDEMO-PAID-CANCELABLE</td>
+
+                        <td>
+                            <div class="fw-semibold">Travel Mate Demo - Da Nang Ocean Pearl</div>
+                            <div class="text-muted small">
+                                18/06/2026
+                                -
+                                20/06/2026
+                            </div>
+                        </td>
+
+                        <td>
+                            <div>Owner Coast Collection</div>
+                            <div class="text-muted small">owner.coast@travelmate.test</div>
+                        </td>
+
+                        <td>1.280.000đ</td>
+                        <td>192.000đ</td>
+                        <td class="fw-semibold text-primary">
+                            1.088.000đ
+                        </td>
+                        <td class="text-danger">
+                            -
+                        </td>
+                        <td class="fw-semibold text-success">
+                            1.088.000đ
+                        </td>
+
+                        <td>
+                            <span class="badge bg-warning text-dark">Ghi nhận tạm</span>
+                                </td>
+
+                        <td class="text-end">
+                            <a href="http://127.0.0.1:8000/admin/settlements/10" class="btn btn-sm btn-outline-primary">
+                                Xem
+                            </a>
+
+                                                            <a href="http://127.0.0.1:8000/admin/settlements/10" class="btn btn-sm btn-success">
+                                    Đối soát
+                                </a>
+                                                    </td>
+                    </tr>
+                                                        <tr>
+                        <td>TMDEMO-CHECKIN-TODAY</td>
+
+                        <td>
+                            <div class="fw-semibold">Travel Mate Demo - Da Nang Ocean Pearl</div>
+                            <div class="text-muted small">
+                                04/06/2026
+                                -
+                                06/06/2026
+                            </div>
+                        </td>
+
+                        <td>
+                            <div>Owner Coast Collection</div>
+                            <div class="text-muted small">owner.coast@travelmate.test</div>
+                        </td>
+
+                        <td>1.280.000đ</td>
+                        <td>192.000đ</td>
+                        <td class="fw-semibold text-primary">
+                            1.088.000đ
+                        </td>
+                        <td class="text-danger">
+                            -
+                        </td>
+                        <td class="fw-semibold text-success">
+                            1.088.000đ
+                        </td>
+
+                        <td>
+                            <span class="badge bg-warning text-dark">Ghi nhận tạm</span>
+                                </td>
+
+                        <td class="text-end">
+                            <a href="http://127.0.0.1:8000/admin/settlements/11" class="btn btn-sm btn-outline-primary">
+                                Xem
+                            </a>
+
+                                                            <a href="http://127.0.0.1:8000/admin/settlements/11" class="btn btn-sm btn-success">
+                                    Đối soát
+                                </a>
+                                                    </td>
+                    </tr>
+                                                        <tr>
+                        <td>TMDEMO-STAYING</td>
+
+                        <td>
+                            <div class="fw-semibold">Travel Mate Demo - Da Nang Ocean Pearl</div>
+                            <div class="text-muted small">
+                                03/06/2026
+                                -
+                                06/06/2026
+                            </div>
+                        </td>
+
+                        <td>
+                            <div>Owner Coast Collection</div>
+                            <div class="text-muted small">owner.coast@travelmate.test</div>
+                        </td>
+
+                        <td>1.920.000đ</td>
+                        <td>288.000đ</td>
+                        <td class="fw-semibold text-primary">
+                            1.632.000đ
+                        </td>
+                        <td class="text-danger">
+                            -
+                        </td>
+                        <td class="fw-semibold text-success">
+                            1.632.000đ
+                        </td>
+
+                        <td>
+                            <span class="badge bg-warning text-dark">Ghi nhận tạm</span>
+                                </td>
+
+                        <td class="text-end">
+                            <a href="http://127.0.0.1:8000/admin/settlements/12" class="btn btn-sm btn-outline-primary">
+                                Xem
+                            </a>
+
+                                                            <a href="http://127.0.0.1:8000/admin/settlements/12" class="btn btn-sm btn-success">
+                                    Đối soát
+                                </a>
+                                                    </td>
+                    </tr>
+                                                        <tr>
+                        <td>TMDEMO-COMPLETED-REVIEWED</td>
+
+                        <td>
+                            <div class="fw-semibold">Travel Mate Demo - Saigon Central Suites</div>
+                            <div class="text-muted small">
+                                25/05/2026
+                                -
+                                27/05/2026
+                            </div>
+                        </td>
+
+                        <td>
+                            <div>Owner City Collection</div>
+                            <div class="text-muted small">owner.city@travelmate.test</div>
+                        </td>
+
+                        <td>1.640.000đ</td>
+                        <td>246.000đ</td>
+                        <td class="fw-semibold text-primary">
+                            1.394.000đ
+                        </td>
+                        <td class="text-danger">
+                            1.470.500đ
+                        </td>
+                        <td class="fw-semibold text-success">
+                            0đ
+                        </td>
+
+                        <td>
+                            <span class="badge bg-primary">Chờ đối soát</span>
+                                </td>
+
+                        <td class="text-end">
+                            <a href="http://127.0.0.1:8000/admin/settlements/13" class="btn btn-sm btn-outline-primary">
+                                Xem
+                            </a>
+
+                                                            <a href="http://127.0.0.1:8000/admin/settlements/13" class="btn btn-sm btn-success">
+                                    Đối soát
+                                </a>
+                                                    </td>
+                    </tr>
+                                                        <tr>
+                        <td>TMDEMO-NO-SHOW</td>
+
+                        <td>
+                            <div class="fw-semibold">Travel Mate Demo - Saigon Central Suites</div>
+                            <div class="text-muted small">
+                                31/05/2026
+                                -
+                                02/06/2026
+                            </div>
+                        </td>
+
+                        <td>
+                            <div>Owner City Collection</div>
+                            <div class="text-muted small">owner.city@travelmate.test</div>
+                        </td>
+
+                        <td>1.640.000đ</td>
+                        <td>246.000đ</td>
+                        <td class="fw-semibold text-primary">
+                            1.394.000đ
+                        </td>
+                        <td class="text-danger">
+                            1.470.500đ
+                        </td>
+                        <td class="fw-semibold text-success">
+                            0đ
+                        </td>
+
+                        <td>
+                            <span class="badge bg-secondary">Đã điều chỉnh</span>
+                                </td>
+
+                        <td class="text-end">
+                            <a href="http://127.0.0.1:8000/admin/settlements/14" class="btn btn-sm btn-outline-primary">
+                                Xem
+                            </a>
+
+                                                    </td>
+                    </tr>
+                                                        <tr>
+                        <td>TMDEMO-MANUAL-REVIEW</td>
+
+                        <td>
+                            <div class="fw-semibold">Travel Mate Demo - Sapa Cloud Retreat</div>
+                            <div class="text-muted small">
+                                04/06/2026
+                                -
+                                05/06/2026
+                            </div>
+                        </td>
+
+                        <td>
+                            <div>Owner North Collection</div>
+                            <div class="text-muted small">owner.north@travelmate.test</div>
+                        </td>
+
+                        <td>550.000đ</td>
+                        <td>82.500đ</td>
+                        <td class="fw-semibold text-primary">
+                            467.500đ
+                        </td>
+                        <td class="text-danger">
+                            -
+                        </td>
+                        <td class="fw-semibold text-success">
+                            467.500đ
+                        </td>
+
+                        <td>
+                            <span class="badge bg-warning text-dark">Ghi nhận tạm</span>
+                                </td>
+
+                        <td class="text-end">
+                            <a href="http://127.0.0.1:8000/admin/settlements/15" class="btn btn-sm btn-outline-primary">
+                                Xem
+                            </a>
+
+                                                            <a href="http://127.0.0.1:8000/admin/settlements/15" class="btn btn-sm btn-success">
+                                    Đối soát
+                                </a>
+                                                    </td>
+                    </tr>
+                                                        <tr>
+                        <td>TMDEMO-REFUND-PENDING</td>
+
+                        <td>
+                            <div class="fw-semibold">Travel Mate Demo - Phu Quoc Sunset Bay</div>
+                            <div class="text-muted small">
+                                16/06/2026
+                                -
+                                19/06/2026
+                            </div>
+                        </td>
+
+                        <td>
+                            <div>Owner City Collection</div>
+                            <div class="text-muted small">owner.city@travelmate.test</div>
+                        </td>
+
+                        <td>2.595.000đ</td>
+                        <td>389.250đ</td>
+                        <td class="fw-semibold text-primary">
+                            2.205.750đ
+                        </td>
+                        <td class="text-danger">
+                            1.470.500đ
+                        </td>
+                        <td class="fw-semibold text-success">
+                            735.250đ
+                        </td>
+
+                        <td>
+                            <span class="badge bg-secondary">Đã điều chỉnh</span>
+                                </td>
+
+                        <td class="text-end">
+                            <a href="http://127.0.0.1:8000/admin/settlements/16" class="btn btn-sm btn-outline-primary">
+                                Xem
+                            </a>
+
+                                                    </td>
+                    </tr>
+                                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-3">
+            <nav class="d-flex justify-items-center justify-content-between">
+        <div class="d-flex justify-content-between flex-fill d-sm-none">
+            <ul class="pagination">
+                
+                                    <li class="page-item disabled" aria-disabled="true">
+                        <span class="page-link">&laquo; Previous</span>
+                    </li>
+                
+                
+                                    <li class="page-item">
+                        <a class="page-link" href="http://127.0.0.1:8000/admin/settlements?page=2" rel="next">Next &raquo;</a>
+                    </li>
+                            </ul>
+        </div>
+
+        <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
+            <div>
+                <p class="small text-muted">
+                    Showing
+                    <span class="fw-semibold">1</span>
+                    to
+                    <span class="fw-semibold">10</span>
+                    of
+                    <span class="fw-semibold">12</span>
+                    results
+                </p>
+            </div>
+
+            <div>
+                <ul class="pagination">
+                    
+                                            <li class="page-item disabled" aria-disabled="true" aria-label="&laquo; Previous">
+                            <span class="page-link" aria-hidden="true">&lsaquo;</span>
+                        </li>
+                    
+                    
+                                            
+                        
+                        
+                                                                                                                        <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
+                                                                                                                                <li class="page-item"><a class="page-link" href="http://127.0.0.1:8000/admin/settlements?page=2">2</a></li>
+                                                                                                        
+                    
+                                            <li class="page-item">
+                            <a class="page-link" href="http://127.0.0.1:8000/admin/settlements?page=2" rel="next" aria-label="Next &raquo;">&rsaquo;</a>
+                        </li>
+                                    </ul>
+            </div>
+        </div>
+    </nav>
+
+        </div>
+    </div>
+</div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
+<script src="http://127.0.0.1:8000/js/travel-mate-effects.js"></script>
+</body>
+</html>

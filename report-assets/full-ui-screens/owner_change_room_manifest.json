@@ -1,0 +1,13 @@
+[
+  {
+    "role": "owner",
+    "file": "C:\\xampp\\htdocs\\hotel-booking-travel-mate-leaflet-map-select-result\\report-assets\\full-ui-screens\\owner-17-change-room.png",
+    "fileName": "owner-17-change-room.png",
+    "title": "Đổi phòng",
+    "caption": "Giao diện đổi phòng cho booking đang lưu trú",
+    "route": "/owner/bookings/18/change-room",
+    "currentUrl": "http://127.0.0.1:8000/owner/bookings/18/change-room",
+    "pageTitle": "Đổi phòng - Travel Mate",
+    "bodyStart": "Travel Mate\nOWNER PORTAL\nTỔNG QUAN\nQUẢN LÝ KHÁCH SẠN\nQUẢN LÝ HẠNG PHÒNG\nQUẢN LÝ PHÒNG\nQUẢN LÝ ĐƠN ĐẶT PHÒNG\nĐÁNH GIÁ & PHẢN HỒI\nDOANH THU & ĐỐI SOÁT\nXEM WEBSITE"
+  }
+]

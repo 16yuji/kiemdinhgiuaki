@@ -1,0 +1,13 @@
+[
+  {
+    "role": "customer",
+    "file": "C:\\xampp\\htdocs\\hotel-booking-travel-mate-leaflet-map-select-result\\report-assets\\full-ui-screens\\customer-06-payment-checkout.png",
+    "fileName": "customer-06-payment-checkout.png",
+    "title": "Thanh toán",
+    "caption": "Giao diện thanh toán VNPAY sandbox và thanh toán giả lập",
+    "route": "/payments/34/checkout",
+    "currentUrl": "http://127.0.0.1:8000/payments/34/checkout",
+    "pageTitle": "Thanh toán đặt phòng",
+    "bodyStart": "1900 9999\nsupport@travelmate.local\nVNPAY sandbox\nGiữ phòng 15 phút\nTM\nTravel Mate\nHOTEL & RESORT BOOKING\nTRANG CHỦ\nKHÁCH SẠN\nNỔI BẬT\nQUY TRÌNH\nLỊCH SỬ ĐẶT PHÒNG"
+  }
+]

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Travel Mate - Đặt phòng khách sạn</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="http://127.0.0.1:8000/css/travel-mate-theme.css" rel="stylesheet">
+
+    </head>
+<body class="tm-resort-body">
+<header class="tm-resort-header">
+    <div class="tm-resort-topbar">
+        <div class="container-fluid px-4 px-xl-5">
+            <div class="d-flex justify-content-between align-items-center gap-3">
+                <div class="d-flex flex-wrap align-items-center gap-3 small">
+                    <span><i class="bi bi-telephone me-1"></i>1900 9999</span>
+                    <span><i class="bi bi-envelope me-1"></i>support@travelmate.local</span>
+                </div>
+                <div class="d-none d-lg-flex align-items-center gap-3 small">
+                    <span><i class="bi bi-shield-check me-1"></i>VNPAY sandbox</span>
+                    <span><i class="bi bi-clock-history me-1"></i>Giữ phòng 15 phút</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg tm-resort-nav">
+        <div class="container-fluid px-4 px-xl-5">
+            <a class="navbar-brand tm-resort-brand" href="http://127.0.0.1:8000/home">
+                <span class="tm-resort-brand-mark">TM</span>
+                <span>
+                    <strong>Travel Mate</strong>
+                    <small>Hotel & Resort Booking</small>
+                </span>
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav mx-lg-auto tm-resort-menu">
+                    <li class="nav-item">
+                        <a href="http://127.0.0.1:8000/home" class="nav-link">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="http://127.0.0.1:8000/hotels" class="nav-link">Khách sạn</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="http://127.0.0.1:8000/#featured" class="nav-link">Nổi bật</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="http://127.0.0.1:8000/#how-it-works" class="nav-link">Quy trình</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav ms-auto align-items-lg-center tm-resort-actions">
+                                            <li class="nav-item">
+                            <a href="http://127.0.0.1:8000/login" class="btn tm-resort-btn tm-resort-btn-light">Đăng nhập</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="http://127.0.0.1:8000/register" class="btn tm-resort-btn tm-resort-btn-dark">Đăng ký</a>
+                        </li>
+                                    </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="tm-resort-main">
+    <div class="container travel-alert-wrap">
+        
+        
+            </div>
+
+    <section class="tm-resort-hero">
+    <div class="tm-resort-hero-media"></div>
+    <div class="container">
+        <div class="tm-resort-hero-content" data-aos="fade-up">
+            <span class="tm-resort-kicker">Travel Mate Collection</span>
+            <h1>Đặt kỳ nghỉ đẹp, rõ giá và dễ quản lý.</h1>
+            <p>
+                Khám phá khách sạn, resort và homestay đang mở bán. Giữ phòng 15 phút, thanh toán VNPAY sandbox hoặc demo fallback, theo dõi hủy hoàn ngay trong tài khoản.
+            </p>
+            <div class="d-flex flex-wrap gap-3">
+                <a href="http://127.0.0.1:8000/hotels" class="btn tm-resort-btn tm-resort-btn-gold">
+                    <i class="bi bi-search me-2"></i>Tìm khách sạn
+                </a>
+                                    <a href="http://127.0.0.1:8000/register" class="btn tm-resort-btn tm-resort-btn-glass">
+                        Tạo tài khoản
+                    </a>
+                            </div>
+        </div>
+
+        <form action="http://127.0.0.1:8000/hotels" method="GET" class="tm-resort-search" data-aos="fade-up" data-aos-delay="120">
+            <div>
+                <label>Điểm đến</label>
+                <input type="text" name="location" placeholder="Tên khách sạn, quận, tỉnh..." value="">
+            </div>
+            <div>
+                <label>Nhận phòng</label>
+                <input type="date" name="checkin_date" value="2026-06-08" min="2026-06-08">
+            </div>
+            <div>
+                <label>Trả phòng</label>
+                <input type="date" name="checkout_date" value="2026-06-09" min="2026-06-09">
+            </div>
+            <div>
+                <label>Số khách</label>
+                <input type="number" name="guests" min="1" value="1">
+            </div>
+            <button type="submit">
+                <i class="bi bi-search"></i>
+                Tìm phòng
+            </button>
+        </form>
+    </div>
+</section>
+
+<section class="tm-resort-section tm-resort-intro">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-5" data-aos="fade-right">
+                <span class="tm-resort-kicker">A better hotel journey</span>
+                <h2 class="tm-resort-title">Một giao diện đặt phòng kiểu resort, tập trung vào ảnh, phòng và hành động.</h2>
+            </div>
+            <div class="col-lg-7" data-aos="fade-left">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="tm-resort-stat">
+                            <strong>15 phút</strong>
+                            <span>giữ chỗ khi chờ thanh toán</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="tm-resort-stat">
+                            <strong>VNPAY</strong>
+                            <span>sandbox và thanh toán demo</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="tm-resort-stat">
+                            <strong>Admin</strong>
+                            <span>xem xét hoàn tiền theo chính sách</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="featured" class="tm-resort-section pt-0">
+    <div class="container">
+        <div class="tm-resort-heading-row" data-aos="fade-up">
+            <div>
+                <span class="tm-resort-kicker">Featured stays</span>
+                <h2 class="tm-resort-title">Khách sạn nổi bật</h2>
+            </div>
+            <a href="http://127.0.0.1:8000/hotels" class="tm-resort-link">Xem tất cả <i class="bi bi-arrow-right"></i></a>
+        </div>
+
+        <div class="row g-4">
+                            <div class="col-md-6 col-xl-4" data-aos="fade-up" data-aos-delay="0">
+                    <article class="tm-resort-hotel-card">
+                        <a href="http://127.0.0.1:8000/hotels/16" class="tm-resort-card-media">
+                                                            <img src="http://127.0.0.1:8000/storage/demo/hotels/hotel-7-hero.jpg" alt="Travel Mate Demo - Phu Quoc Sunset Bay">
+                                                        <em><i class="bi bi-star-fill"></i>4.7</em>
+                        </a>
+                        <div class="tm-resort-card-body">
+                            <span>Phu Quoc, Kien Giang</span>
+                            <h3>Travel Mate Demo - Phu Quoc Sunset Bay</h3>
+                            <p>Khach san demo phong cach premium, du lieu du de test tim kiem, dat phong, danh gia va van hanh luu tru.</p>
+                            <a href="http://127.0.0.1:8000/hotels/16">Xem chi tiết</a>
+                        </div>
+                    </article>
+                </div>
+                            <div class="col-md-6 col-xl-4" data-aos="fade-up" data-aos-delay="70">
+                    <article class="tm-resort-hotel-card">
+                        <a href="http://127.0.0.1:8000/hotels/15" class="tm-resort-card-media">
+                                                            <img src="http://127.0.0.1:8000/storage/demo/hotels/hotel-6-hero.jpg" alt="Travel Mate Demo - Saigon Central Suites">
+                                                        <em><i class="bi bi-star-fill"></i>5.0</em>
+                        </a>
+                        <div class="tm-resort-card-body">
+                            <span>Quan 1, TP Ho Chi Minh</span>
+                            <h3>Travel Mate Demo - Saigon Central Suites</h3>
+                            <p>Khach san demo phong cach premium, du lieu du de test tim kiem, dat phong, danh gia va van hanh luu tru.</p>
+                            <a href="http://127.0.0.1:8000/hotels/15">Xem chi tiết</a>
+                        </div>
+                    </article>
+                </div>
+                            <div class="col-md-6 col-xl-4" data-aos="fade-up" data-aos-delay="140">
+                    <article class="tm-resort-hotel-card">
+                        <a href="http://127.0.0.1:8000/hotels/14" class="tm-resort-card-media">
+                                                            <img src="http://127.0.0.1:8000/storage/demo/hotels/hotel-5-hero.jpg" alt="Travel Mate Demo - Da Lat Pine Garden">
+                                                        <em><i class="bi bi-star-fill"></i>4.3</em>
+                        </a>
+                        <div class="tm-resort-card-body">
+                            <span>Da Lat, Lam Dong</span>
+                            <h3>Travel Mate Demo - Da Lat Pine Garden</h3>
+                            <p>Khach san demo phong cach premium, du lieu du de test tim kiem, dat phong, danh gia va van hanh luu tru.</p>
+                            <a href="http://127.0.0.1:8000/hotels/14">Xem chi tiết</a>
+                        </div>
+                    </article>
+                </div>
+                    </div>
+    </div>
+</section>
+
+<section id="how-it-works" class="tm-resort-section tm-resort-steps-section">
+    <div class="container">
+        <div class="tm-resort-heading-row" data-aos="fade-up">
+            <div>
+                <span class="tm-resort-kicker">How it works</span>
+                <h2 class="tm-resort-title text-white">Đặt phòng trong ba bước</h2>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-4" data-aos="fade-up">
+                <div class="tm-resort-step">
+                    <b>01</b>
+                    <h3>Tìm nơi phù hợp</h3>
+                    <p>Lọc theo điểm đến, ngày lưu trú, số khách, giá, đánh giá và tiện nghi.</p>
+                </div>
+            </div>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="80">
+                <div class="tm-resort-step">
+                    <b>02</b>
+                    <h3>Thanh toán rõ ràng</h3>
+                    <p>Chọn VNPAY sandbox hoặc thanh toán giả lập cho demo. Khách hàng chỉ thấy tổng tiền và trạng thái thanh toán.</p>
+                </div>
+            </div>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="160">
+                <div class="tm-resort-step">
+                    <b>03</b>
+                    <h3>Lưu trú và đánh giá</h3>
+                    <p>Owner vận hành check-in/check-out, khách hàng đánh giá sau khi hoàn tất lưu trú.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="tm-resort-section">
+    <div class="container">
+        <div class="tm-resort-partner" data-aos="zoom-in">
+            <div>
+                <span class="tm-resort-kicker">For partners</span>
+                <h2>Đưa khách sạn của bạn lên Travel Mate.</h2>
+                <p>Customer có thể gửi yêu cầu trở thành đối tác. Admin duyệt trước khi tài khoản được chuyển sang Owner.</p>
+            </div>
+                            <a href="http://127.0.0.1:8000/register" class="btn tm-resort-btn tm-resort-btn-gold">Bắt đầu</a>
+                    </div>
+    </div>
+</section>
+</main>
+
+<footer class="tm-resort-footer">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <a class="tm-resort-brand text-white text-decoration-none" href="http://127.0.0.1:8000/home">
+                    <span class="tm-resort-brand-mark">TM</span>
+                    <span>
+                        <strong>Travel Mate</strong>
+                        <small>Hotel & Resort Booking</small>
+                    </span>
+                </a>
+                <p class="mt-4 mb-0 text-white-50">
+                    Nền tảng đặt phòng khách sạn với quy trình giữ chỗ, thanh toán sandbox, hủy hoàn và quản lý lưu trú rõ ràng.
+                </p>
+            </div>
+
+            <div class="col-6 col-lg-2">
+                <h3>Khám phá</h3>
+                <a href="http://127.0.0.1:8000/home">Trang chủ</a>
+                <a href="http://127.0.0.1:8000/hotels">Khách sạn</a>
+                <a href="http://127.0.0.1:8000/#featured">Nổi bật</a>
+            </div>
+
+            <div class="col-6 col-lg-3">
+                <h3>Tài khoản</h3>
+                                    <a href="http://127.0.0.1:8000/login">Đăng nhập</a>
+                    <a href="http://127.0.0.1:8000/register">Đăng ký</a>
+                            </div>
+
+            <div class="col-lg-3">
+                <h3>Hỗ trợ</h3>
+                <p class="text-white-50 mb-2"><i class="bi bi-telephone me-2"></i>1900 9999</p>
+                <p class="text-white-50 mb-2"><i class="bi bi-envelope me-2"></i>support@travelmate.local</p>
+                <p class="text-white-50 mb-0"><i class="bi bi-geo-alt me-2"></i>Travel Mate Support Center</p>
+            </div>
+        </div>
+
+        <div class="tm-resort-footer-bottom">
+            <span>© 2026 Travel Mate.</span>
+            <span>Designed as a premium hotel booking experience.</span>
+        </div>
+    </div>
+</footer>
+
+<div class="tm-ai-chat js-ai-chat" data-endpoint="http://127.0.0.1:8000/ai/chat">
+    <button type="button" class="tm-ai-chat-toggle js-ai-chat-toggle" aria-label="Mở trợ lý Travel Mate">
+        <i class="bi bi-stars"></i>
+    </button>
+
+    <section class="tm-ai-chat-panel" aria-label="AI tư vấn Travel Mate">
+        <header>
+            <div>
+                <span>Travel Mate AI</span>
+                <strong>Trợ lý du lịch</strong>
+            </div>
+            <button type="button" class="js-ai-chat-close" aria-label="Đóng chatbot">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </header>
+
+        <div class="tm-ai-chat-messages js-ai-chat-messages">
+            <div class="tm-ai-message tm-ai-message-bot">
+                Chào bạn, mình là Travel Mate AI. Bạn có thể trò chuyện tự nhiên với mình về chuyến đi, khách sạn, lịch trình, thanh toán, hủy đơn hoặc cách dùng Travel Mate. Mình chỉ tư vấn, mọi đặt phòng/thanh toán vẫn cần bạn xác nhận trên giao diện.
+            </div>
+        </div>
+
+        <div class="tm-ai-chat-prompts" aria-label="Gợi ý câu hỏi nhanh">
+            <button type="button" class="js-ai-chat-prompt" data-message="Bạn có thể giúp mình làm gì?">Bạn làm được gì?</button>
+            <button type="button" class="js-ai-chat-prompt" data-message="Tìm khách sạn Đà Nẵng có hồ bơi">Gợi ý khách sạn</button>
+            <button type="button" class="js-ai-chat-prompt" data-message="Nếu mình đã thanh toán rồi muốn hủy thì sao?">Hủy/hoàn tiền</button>
+            <button type="button" class="js-ai-chat-prompt" data-message="Gợi ý lịch trình 2 ngày gần biển">Lịch trình 2 ngày</button>
+        </div>
+
+        <form class="tm-ai-chat-form js-ai-chat-form" method="POST" action="http://127.0.0.1:8000/ai/chat">
+            <input type="hidden" name="_token" value="TrnT48lKnaPaOSHFXsiTEHmmKfzOqLDgn1BnXp9W" autocomplete="off">            <input
+                type="text"
+                name="message"
+                maxlength="600"
+                autocomplete="off"
+                placeholder="Nhập câu hỏi hoặc trò chuyện với Travel Mate AI..."
+                required
+            >
+            <button type="submit" aria-label="Gửi câu hỏi">
+                <i class="bi bi-send"></i>
+            </button>
+        </form>
+    </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
+<script src="http://127.0.0.1:8000/js/travel-mate-effects.js"></script>
+</body>
+</html>

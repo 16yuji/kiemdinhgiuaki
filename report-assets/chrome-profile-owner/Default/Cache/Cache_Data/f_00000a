@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đổi phòng - Travel Mate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="http://127.0.0.1:8000/css/travel-mate-theme.css" rel="stylesheet">
+    </head>
+<body class="tm-dashboard">
+<div class="tm-dashboard-layout">
+    <aside class="tm-sidebar">
+        <div class="tm-sidebar-brand">
+            <a href="http://127.0.0.1:8000/dashboard" class="tm-brand text-white">
+                <span class="tm-logo"><i class="bi bi-compass-fill"></i></span>
+                <span class="tm-brand-text">
+                    <strong class="text-white">Travel Mate</strong>
+                    <small class="text-white-50">Owner Portal</small>
+                </span>
+            </a>
+        </div>
+
+        <div class="tm-sidebar-nav">
+                            <ul class="nav nav-pills flex-column gap-2">
+            <li class="nav-item">
+            <a href="http://127.0.0.1:8000/owner/dashboard" class="nav-link text-white ">
+                <i class="bi bi-speedometer2 me-2"></i>
+                <span>Tổng quan</span>
+            </a>
+        </li>
+            <li class="nav-item">
+            <a href="http://127.0.0.1:8000/owner/hotels" class="nav-link text-white ">
+                <i class="bi bi-building me-2"></i>
+                <span>Quản lý khách sạn</span>
+            </a>
+        </li>
+            <li class="nav-item">
+            <a href="http://127.0.0.1:8000/owner/room-types" class="nav-link text-white ">
+                <i class="bi bi-door-open me-2"></i>
+                <span>Quản lý hạng phòng</span>
+            </a>
+        </li>
+            <li class="nav-item">
+            <a href="http://127.0.0.1:8000/owner/rooms" class="nav-link text-white ">
+                <i class="bi bi-grid-3x3-gap me-2"></i>
+                <span>Quản lý phòng</span>
+            </a>
+        </li>
+            <li class="nav-item">
+            <a href="http://127.0.0.1:8000/owner/bookings" class="nav-link text-white active">
+                <i class="bi bi-calendar-check me-2"></i>
+                <span>Quản lý đơn đặt phòng</span>
+            </a>
+        </li>
+            <li class="nav-item">
+            <a href="http://127.0.0.1:8000/owner/reviews" class="nav-link text-white ">
+                <i class="bi bi-chat-heart me-2"></i>
+                <span>Đánh giá &amp; phản hồi</span>
+            </a>
+        </li>
+            <li class="nav-item">
+            <a href="http://127.0.0.1:8000/owner/revenues" class="nav-link text-white ">
+                <i class="bi bi-cash-coin me-2"></i>
+                <span>Doanh thu &amp; đối soát</span>
+            </a>
+        </li>
+    
+    <li class="nav-item mt-3 pt-3 border-top border-white border-opacity-10">
+        <a href="http://127.0.0.1:8000/home" class="nav-link text-white">
+            <i class="bi bi-globe2 me-2"></i>
+            <span>Xem website</span>
+        </a>
+    </li>
+</ul>
+                    </div>
+
+        <div class="position-absolute bottom-0 start-0 end-0 p-3" style="z-index:2;">
+            <div class="p-3 rounded-4" style="background: rgba(255,255,255,.11); border: 1px solid rgba(255,255,255,.14); backdrop-filter: blur(18px);">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="tm-logo" style="width:42px;height:42px;border-radius:15px;">O</div>
+                    <div class="min-w-0">
+                        <div class="fw-bold text-white text-truncate">Owner Coast Collection</div>
+                        <div class="small text-white-50">Online • Owner</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <div class="tm-dashboard-main">
+        <nav class="navbar tm-dashboard-topbar">
+            <div class="container-fluid px-4">
+                <div>
+                    <div class="tm-eyebrow mb-1"><i class="bi bi-stars"></i> Owner Portal</div>
+                    <h1 class="h4 fw-black mb-0" style="font-weight:900;letter-spacing:0;">Đổi phòng</h1>
+                </div>
+
+                <div class="d-flex align-items-center gap-2">
+                    <a href="http://127.0.0.1:8000/home" class="btn tm-btn-light d-none d-lg-inline-flex">
+                        <i class="bi bi-globe2 me-1"></i> Website
+                    </a>
+                    <a href="http://127.0.0.1:8000/profile" class="btn tm-btn-light">
+                        <i class="bi bi-person-circle me-1"></i>
+                        <span class="d-none d-md-inline">Owner Coast Collection</span>
+                    </a>
+                    <form method="POST" action="http://127.0.0.1:8000/logout" class="js-confirm-form" data-confirm="Bạn muốn đăng xuất khỏi Travel Mate?">
+                        <input type="hidden" name="_token" value="dxkMfUXtr2pHl4wsbgoewJkuVpDzGYiiivwYIMPn" autocomplete="off">                        <button class="btn btn-outline-danger" type="submit">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span class="d-none d-md-inline">Đăng xuất</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        <main class="tm-dashboard-content">
+            <div class="tm-page-hero" data-aos="fade-up">
+                <div class="row align-items-center g-3">
+                    <div class="col-lg-8">
+                        <div class="tm-eyebrow"><i class="bi bi-compass"></i> Travel Mate Workspace</div>
+                        <h2 class="tm-heading-md mb-2">Xin chào, Owner Coast Collection.</h2>
+                        <p class="tm-lead mb-0">Quản lý cơ sở lưu trú, phòng, đơn đặt và doanh thu.</p>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <div class="d-inline-flex align-items-center gap-2 px-3 py-2 rounded-pill" style="background:rgba(255,255,255,.72);border:1px solid rgba(6,13,170,.11);font-weight:900;">
+                            <i class="bi bi-calendar2-week text-primary"></i>
+                            07/06/2026
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            
+            <div data-aos="fade-up" data-aos-delay="80">
+                
+
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="mb-1">Đổi phòng cho đơn TMDEMO-STAYING</h4>
+        <p class="text-muted mb-0">
+            Chọn phòng đang sử dụng và phòng mới cùng hạng đang sẵn sàng để đổi cho khách.
+        </p>
+    </div>
+
+    <a href="http://127.0.0.1:8000/owner/bookings/18" class="btn btn-outline-secondary">
+        Quay lại
+    </a>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-7">
+        <div class="card shadow-sm">
+            <div class="card-header bg-white">
+                <h5 class="mb-0">Thông tin đơn</h5>
+            </div>
+
+            <div class="card-body">
+                <table class="table">
+                    <tr>
+                        <th style="width: 180px;">Mã đơn</th>
+                        <td>TMDEMO-STAYING</td>
+                    </tr>
+
+                    <tr>
+                        <th>Khách sạn</th>
+                        <td>Travel Mate Demo - Da Nang Ocean Pearl</td>
+                    </tr>
+
+                    <tr>
+                        <th>Ngày lưu trú</th>
+                        <td>
+                            03/06/2026
+                            -
+                            06/06/2026
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Người liên hệ</th>
+                        <td>Linh Pham - 0912000003</td>
+                    </tr>
+
+                    <tr>
+                        <th>Trạng thái</th>
+                        <td>
+                            <span class="badge bg-primary">Đang lưu trú</span>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="alert alert-info small mb-0">
+                    Theo đặc tả, phòng mới phải đang ở trạng thái <strong>Sẵn sàng</strong>
+                    và cùng hạng hoặc tương đương với phòng hiện tại.
+                    Hệ thống hiện đang giới hạn theo <strong>cùng hạng phòng</strong> để đảm bảo an toàn dữ liệu.
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mt-3">
+            <div class="card-header bg-white">
+                <h5 class="mb-0">Phòng đang sử dụng</h5>
+            </div>
+
+            <div class="card-body">
+                                    <div class="border rounded p-3 mb-2">
+                        <div class="fw-semibold">
+                            Phòng 101
+
+                                                            - Tầng 1
+                                                    </div>
+
+                        <div class="text-muted small">
+                            Hạng phòng: Standard Comfort
+                        </div>
+
+                        <div class="text-muted small">
+                            Gán lúc:
+                            03/06/2026 03:29
+                        </div>
+
+                                                    <div class="text-muted small">
+                                Ghi chú: Gan phong demo.
+                            </div>
+                                            </div>
+                            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <div class="card shadow-sm">
+            <div class="card-header bg-white">
+                <h5 class="mb-0">Thực hiện đổi phòng</h5>
+            </div>
+
+            <div class="card-body">
+                                    <form method="POST" action="http://127.0.0.1:8000/owner/bookings/18/change-room">
+                        <input type="hidden" name="_token" value="dxkMfUXtr2pHl4wsbgoewJkuVpDzGYiiivwYIMPn" autocomplete="off">
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Phòng hiện tại cần đổi <span class="text-danger">*</span>
+                            </label>
+
+                            <select
+                                name="assignment_id"
+                                class="form-select "
+                                required
+                            >
+                                <option value="">-- Chọn phòng hiện tại --</option>
+
+                                                                    <option value="3" >
+                                        Phòng 101
+                                        - Standard Comfort
+                                    </option>
+                                                            </select>
+
+                                                    </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Phòng mới <span class="text-danger">*</span>
+                            </label>
+
+                            <select
+                                name="new_room_id"
+                                class="form-select "
+                                required
+                            >
+                                <option value="">-- Chọn phòng mới --</option>
+
+                                                                    <option value="182" >
+                                        Phòng 102
+                                                                                    - Tầng 1
+                                                                                - Standard Comfort
+                                    </option>
+                                                                    <option value="183" >
+                                        Phòng 103
+                                                                                    - Tầng 1
+                                                                                - Standard Comfort
+                                    </option>
+                                                                    <option value="184" >
+                                        Phòng 104
+                                                                                    - Tầng 1
+                                                                                - Standard Comfort
+                                    </option>
+                                                                    <option value="185" >
+                                        Phòng 105
+                                                                                    - Tầng 1
+                                                                                - Standard Comfort
+                                    </option>
+                                                                    <option value="186" >
+                                        Phòng 106
+                                                                                    - Tầng 1
+                                                                                - Standard Comfort
+                                    </option>
+                                                                    <option value="187" >
+                                        Phòng 107
+                                                                                    - Tầng 1
+                                                                                - Standard Comfort
+                                    </option>
+                                                                    <option value="188" >
+                                        Phòng 108
+                                                                                    - Tầng 1
+                                                                                - Standard Comfort
+                                    </option>
+                                                            </select>
+
+                            
+                            <div class="form-text">
+                                Chỉ hiển thị các phòng cùng hạng đang ở trạng thái sẵn sàng.
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Trạng thái phòng cũ sau khi đổi <span class="text-danger">*</span>
+                            </label>
+
+                            <select
+                                name="old_room_next_status"
+                                class="form-select "
+                                required
+                            >
+                                <option value="cleaning" >
+                                    Đang dọn
+                                </option>
+
+                                <option value="maintenance" >
+                                    Bảo trì
+                                </option>
+                            </select>
+
+                            
+                            <div class="form-text">
+                                Nếu phòng cũ chỉ cần vệ sinh, chọn Đang dọn.
+                                Nếu phòng cũ có sự cố, chọn Bảo trì.
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Lý do đổi phòng <span class="text-danger">*</span>
+                            </label>
+
+                            <textarea
+                                name="change_reason"
+                                rows="4"
+                                class="form-control "
+                                placeholder="Ví dụ: Phòng cũ bị lỗi điều hòa, khách yêu cầu đổi phòng..."
+                                required
+                            ></textarea>
+
+                                                    </div>
+
+                        <button
+                            type="submit"
+                            class="btn btn-warning w-100"
+                            onclick="return confirm('Xác nhận đổi phòng cho khách?')"
+                        >
+                            Xác nhận đổi phòng
+                        </button>
+                    </form>
+                            </div>
+        </div>
+    </div>
+</div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
+<script src="http://127.0.0.1:8000/js/travel-mate-effects.js"></script>
+</body>
+</html>

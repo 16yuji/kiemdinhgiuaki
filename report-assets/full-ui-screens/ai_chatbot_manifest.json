@@ -1,0 +1,12 @@
+[
+  {
+    "role": "ai",
+    "file": "C:\\xampp\\htdocs\\hotel-booking-travel-mate-leaflet-map-select-result\\report-assets\\full-ui-screens\\ai-01-chatbot.png",
+    "fileName": "ai-01-chatbot.png",
+    "title": "Chatbot Travel Mate AI",
+    "caption": "Giao diện chatbot tư vấn khách sạn theo ngữ cảnh trang hiện tại",
+    "route": "/hotels/16",
+    "currentUrl": "http://127.0.0.1:8000/hotels/16",
+    "pageTitle": "Travel Mate"
+  }
+]

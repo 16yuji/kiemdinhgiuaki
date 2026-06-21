@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tìm kiếm khách sạn - Travel Mate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="http://127.0.0.1:8000/css/travel-mate-theme.css" rel="stylesheet">
+
+    </head>
+<body class="tm-resort-body">
+<header class="tm-resort-header">
+    <div class="tm-resort-topbar">
+        <div class="container-fluid px-4 px-xl-5">
+            <div class="d-flex justify-content-between align-items-center gap-3">
+                <div class="d-flex flex-wrap align-items-center gap-3 small">
+                    <span><i class="bi bi-telephone me-1"></i>1900 9999</span>
+                    <span><i class="bi bi-envelope me-1"></i>support@travelmate.local</span>
+                </div>
+                <div class="d-none d-lg-flex align-items-center gap-3 small">
+                    <span><i class="bi bi-shield-check me-1"></i>VNPAY sandbox</span>
+                    <span><i class="bi bi-clock-history me-1"></i>Giữ phòng 15 phút</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg tm-resort-nav">
+        <div class="container-fluid px-4 px-xl-5">
+            <a class="navbar-brand tm-resort-brand" href="http://127.0.0.1:8000/home">
+                <span class="tm-resort-brand-mark">TM</span>
+                <span>
+                    <strong>Travel Mate</strong>
+                    <small>Hotel & Resort Booking</small>
+                </span>
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav mx-lg-auto tm-resort-menu">
+                    <li class="nav-item">
+                        <a href="http://127.0.0.1:8000/home" class="nav-link">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="http://127.0.0.1:8000/hotels" class="nav-link">Khách sạn</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="http://127.0.0.1:8000/#featured" class="nav-link">Nổi bật</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="http://127.0.0.1:8000/#how-it-works" class="nav-link">Quy trình</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav ms-auto align-items-lg-center tm-resort-actions">
+                                            <li class="nav-item">
+                            <a href="http://127.0.0.1:8000/login" class="btn tm-resort-btn tm-resort-btn-light">Đăng nhập</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="http://127.0.0.1:8000/register" class="btn tm-resort-btn tm-resort-btn-dark">Đăng ký</a>
+                        </li>
+                                    </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="tm-resort-main">
+    <div class="container travel-alert-wrap">
+        
+        
+            </div>
+
+    
+<section class="tm-resort-page-hero tm-resort-search-hero">
+    <div class="container">
+        <div class="row g-4 align-items-end">
+            <div class="col-lg-8" data-aos="fade-up">
+                <span class="tm-resort-kicker">Search Travel Mate</span>
+                <h1>Tìm khách sạn theo đúng lịch trình.</h1>
+                <p>Lọc điểm đến, ngày ở, giá, tiện nghi và đánh giá. Kết quả được tính theo phòng còn khả dụng.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end" data-aos="fade-up" data-aos-delay="80">
+                <span class="tm-resort-count">8 kết quả trên trang này</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="tm-resort-section tm-resort-search-panel-section">
+    <div class="container">
+        <form method="GET" action="http://127.0.0.1:8000/hotels" class="tm-resort-filter" data-aos="fade-up">
+            <div class="tm-resort-filter-main">
+                <div>
+                    <label>Điểm đến</label>
+                    <input type="text" name="location" value="" placeholder="Tỉnh, quận, tên khách sạn...">
+                </div>
+                <div>
+                    <label>Ngày nhận</label>
+                    <input type="date" name="checkin_date" value="2026-06-07" min="2026-06-07">
+                </div>
+                <div>
+                    <label>Ngày trả</label>
+                    <input type="date" name="checkout_date" value="2026-06-08" min="2026-06-08">
+                </div>
+                <div>
+                    <label>Số khách</label>
+                    <input type="number" name="guests" min="1" value="1">
+                </div>
+                <button type="submit"><i class="bi bi-search"></i>Tìm kiếm</button>
+            </div>
+
+            <div class="tm-resort-filter-extra">
+                <div>
+                    <label>Giá từ</label>
+                    <input type="number" name="min_price" min="0" value="" placeholder="300000">
+                </div>
+                <div>
+                    <label>Giá đến</label>
+                    <input type="number" name="max_price" min="0" value="" placeholder="1000000">
+                </div>
+                <div>
+                    <label>Đánh giá</label>
+                    <select name="min_rating">
+                        <option value="">Không chọn</option>
+                        <option value="5" >5 sao</option>
+                        <option value="4" >Từ 4 sao</option>
+                        <option value="3" >Từ 3 sao</option>
+                        <option value="2" >Từ 2 sao</option>
+                        <option value="1" >Từ 1 sao</option>
+                    </select>
+                </div>
+                <a href="http://127.0.0.1:8000/hotels">Xóa lọc</a>
+            </div>
+
+            <div class="tm-resort-amenities">
+                <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap mb-3">
+                    <h2>Tiện nghi</h2>
+                                    </div>
+                <div class="row g-2">
+                                            <div class="col-md-3 col-sm-6">
+                            <label class="tm-resort-check">
+                                <input type="checkbox" name="amenity_ids[]" value="16" >
+                                <span>Bai do xe</span>
+                            </label>
+                        </div>
+                                            <div class="col-md-3 col-sm-6">
+                            <label class="tm-resort-check">
+                                <input type="checkbox" name="amenity_ids[]" value="3" >
+                                <span>Bãi đỗ xe</span>
+                            </label>
+                        </div>
+                                            <div class="col-md-3 col-sm-6">
+                            <label class="tm-resort-check">
+                                <input type="checkbox" name="amenity_ids[]" value="8" >
+                                <span>Dịch vụ giặt là</span>
+                            </label>
+                        </div>
+                                            <div class="col-md-3 col-sm-6">
+                            <label class="tm-resort-check">
+                                <input type="checkbox" name="amenity_ids[]" value="19" >
+                                <span>Dua don san bay</span>
+                            </label>
+                        </div>
+                                            <div class="col-md-3 col-sm-6">
+                            <label class="tm-resort-check">
+                                <input type="checkbox" name="amenity_ids[]" value="9" >
+                                <span>Đưa đón sân bay</span>
+                            </label>
+                        </div>
+                                            <div class="col-md-3 col-sm-6">
+                            <label class="tm-resort-check">
+                                <input type="checkbox" name="amenity_ids[]" value="15" >
+                                <span>Free Wi-Fi</span>
+                            </label>
+                        </div>
+                                            <div class="col-md-3 col-sm-6">
+                            <label class="tm-resort-check">
+                                <input type="checkbox" name="amenity_ids[]" value="20" >
+                                <span>Gan bien</span>
+                            </label>
+                        </div>
+                                            <div class="col-md-3 col-sm-6">
+                            <label class="tm-resort-check">
+                                <input type="checkbox" name="amenity_ids[]" value="4" >
+                                <span>Hồ bơi</span>
+                            </label>
+                        </div>
+                                            <div class="col-md-3 col-sm-6">
+                            <label class="tm-resort-check">
+                                <input type="checkbox" name="amenity_ids[]" value="6" >
+                                <span>Lễ tân 24/7</span>
+                            </label>
+                        </div>
+                                            <div class="col-md-3 col-sm-6">
+                            <label class="tm-resort-check">
+                                <input type="checkbox" name="amenity_ids[]" value="5" >
+                                <span>Nhà hàng</span>
+                            </label>
+                        </div>
+                                            <div class="col-md-3 col-sm-6">
+                            <label class="tm-resort-check">
+                                <input type="checkbox" name="amenity_ids[]" value="18" >
+                                <span>Phong gym</span>
+                            </label>
+                        </div>
+                                            <div class="col-md-3 col-sm-6">
+                            <label class="tm-resort-check">
+                                <input type="checkbox" name="amenity_ids[]" value="17" >
+                                <span>Spa</span>
+                            </label>
+                        </div>
+                                            <div class="col-md-3 col-sm-6">
+                            <label class="tm-resort-check">
+                                <input type="checkbox" name="amenity_ids[]" value="7" >
+                                <span>Thang máy</span>
+                            </label>
+                        </div>
+                                            <div class="col-md-3 col-sm-6">
+                            <label class="tm-resort-check">
+                                <input type="checkbox" name="amenity_ids[]" value="21" >
+                                <span>View nui</span>
+                            </label>
+                        </div>
+                                            <div class="col-md-3 col-sm-6">
+                            <label class="tm-resort-check">
+                                <input type="checkbox" name="amenity_ids[]" value="1" >
+                                <span>Wi-Fi miễn phí</span>
+                            </label>
+                        </div>
+                                            <div class="col-md-3 col-sm-6">
+                            <label class="tm-resort-check">
+                                <input type="checkbox" name="amenity_ids[]" value="2" >
+                                <span>Wifi miễn phí</span>
+                            </label>
+                        </div>
+                                    </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<section class="tm-resort-section pt-0">
+    <div class="container">
+        <div class="tm-resort-heading-row" data-aos="fade-up">
+            <div>
+                <span class="tm-resort-kicker">Available stays</span>
+                <h2 class="tm-resort-title">Những lựa chọn đang còn phòng</h2>
+            </div>
+            <span class="tm-resort-muted">8 kết quả hiển thị</span>
+        </div>
+
+        <div class="tm-resort-results">
+                            <article class="tm-resort-result-card" data-aos="fade-up" data-aos-delay="0">
+                    <a href="http://127.0.0.1:8000/hotels/16?checkin_date=2026-06-07&amp;checkout_date=2026-06-08&amp;guests=1" class="tm-resort-result-image">
+                                                    <img src="http://127.0.0.1:8000/storage/demo/hotels/hotel-7-hero.jpg" alt="Travel Mate Demo - Phu Quoc Sunset Bay">
+                                            </a>
+
+                    <div class="tm-resort-result-body">
+                        <div class="d-flex justify-content-between align-items-start gap-3">
+                            <div>
+                                <span>110 Tran Hung Dao, Phu Quoc, Kien Giang</span>
+                                <h3>Travel Mate Demo - Phu Quoc Sunset Bay</h3>
+                            </div>
+                            <em><i class="bi bi-star-fill"></i>4.7</em>
+                        </div>
+
+                        <div class="tm-resort-tag-row">
+                                                            <b>Hồ bơi</b>
+                                                            <b>Nhà hàng</b>
+                                                            <b>Spa</b>
+                                                            <b>Gan bien</b>
+                                                    </div>
+
+                        <div class="tm-resort-result-bottom">
+                            <div>
+                                <strong>Từ 865.000đ / đêm</strong>
+                                <small>3 hạng phòng phù hợp</small>
+                            </div>
+                            <a href="http://127.0.0.1:8000/hotels/16?checkin_date=2026-06-07&amp;checkout_date=2026-06-08&amp;guests=1">
+                                Xem phòng
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                            <article class="tm-resort-result-card" data-aos="fade-up" data-aos-delay="60">
+                    <a href="http://127.0.0.1:8000/hotels/15?checkin_date=2026-06-07&amp;checkout_date=2026-06-08&amp;guests=1" class="tm-resort-result-image">
+                                                    <img src="http://127.0.0.1:8000/storage/demo/hotels/hotel-6-hero.jpg" alt="Travel Mate Demo - Saigon Central Suites">
+                                            </a>
+
+                    <div class="tm-resort-result-body">
+                        <div class="d-flex justify-content-between align-items-start gap-3">
+                            <div>
+                                <span>19 Dong Khoi, Quan 1, TP Ho Chi Minh</span>
+                                <h3>Travel Mate Demo - Saigon Central Suites</h3>
+                            </div>
+                            <em><i class="bi bi-star-fill"></i>5.0</em>
+                        </div>
+
+                        <div class="tm-resort-tag-row">
+                                                            <b>Lễ tân 24/7</b>
+                                                            <b>Free Wi-Fi</b>
+                                                            <b>Phong gym</b>
+                                                            <b>Dua don san bay</b>
+                                                    </div>
+
+                        <div class="tm-resort-result-bottom">
+                            <div>
+                                <strong>Từ 820.000đ / đêm</strong>
+                                <small>3 hạng phòng phù hợp</small>
+                            </div>
+                            <a href="http://127.0.0.1:8000/hotels/15?checkin_date=2026-06-07&amp;checkout_date=2026-06-08&amp;guests=1">
+                                Xem phòng
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                            <article class="tm-resort-result-card" data-aos="fade-up" data-aos-delay="120">
+                    <a href="http://127.0.0.1:8000/hotels/14?checkin_date=2026-06-07&amp;checkout_date=2026-06-08&amp;guests=1" class="tm-resort-result-image">
+                                                    <img src="http://127.0.0.1:8000/storage/demo/hotels/hotel-5-hero.jpg" alt="Travel Mate Demo - Da Lat Pine Garden">
+                                            </a>
+
+                    <div class="tm-resort-result-body">
+                        <div class="d-flex justify-content-between align-items-start gap-3">
+                            <div>
+                                <span>7 Trieu Viet Vuong, Da Lat, Lam Dong</span>
+                                <h3>Travel Mate Demo - Da Lat Pine Garden</h3>
+                            </div>
+                            <em><i class="bi bi-star-fill"></i>4.3</em>
+                        </div>
+
+                        <div class="tm-resort-tag-row">
+                                                            <b>Nhà hàng</b>
+                                                            <b>Free Wi-Fi</b>
+                                                            <b>Bai do xe</b>
+                                                            <b>View nui</b>
+                                                    </div>
+
+                        <div class="tm-resort-result-bottom">
+                            <div>
+                                <strong>Từ 775.000đ / đêm</strong>
+                                <small>3 hạng phòng phù hợp</small>
+                            </div>
+                            <a href="http://127.0.0.1:8000/hotels/14?checkin_date=2026-06-07&amp;checkout_date=2026-06-08&amp;guests=1">
+                                Xem phòng
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                            <article class="tm-resort-result-card" data-aos="fade-up" data-aos-delay="180">
+                    <a href="http://127.0.0.1:8000/hotels/13?checkin_date=2026-06-07&amp;checkout_date=2026-06-08&amp;guests=1" class="tm-resort-result-image">
+                                                    <img src="http://127.0.0.1:8000/storage/demo/hotels/hotel-4-hero.jpg" alt="Travel Mate Demo - Nha Trang Bay View">
+                                            </a>
+
+                    <div class="tm-resort-result-body">
+                        <div class="d-flex justify-content-between align-items-start gap-3">
+                            <div>
+                                <span>26 Tran Phu, Nha Trang, Khanh Hoa</span>
+                                <h3>Travel Mate Demo - Nha Trang Bay View</h3>
+                            </div>
+                            <em><i class="bi bi-star-fill"></i>4.4</em>
+                        </div>
+
+                        <div class="tm-resort-tag-row">
+                                                            <b>Hồ bơi</b>
+                                                            <b>Nhà hàng</b>
+                                                            <b>Lễ tân 24/7</b>
+                                                            <b>Gan bien</b>
+                                                    </div>
+
+                        <div class="tm-resort-result-bottom">
+                            <div>
+                                <strong>Từ 730.000đ / đêm</strong>
+                                <small>3 hạng phòng phù hợp</small>
+                            </div>
+                            <a href="http://127.0.0.1:8000/hotels/13?checkin_date=2026-06-07&amp;checkout_date=2026-06-08&amp;guests=1">
+                                Xem phòng
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                            <article class="tm-resort-result-card" data-aos="fade-up" data-aos-delay="240">
+                    <a href="http://127.0.0.1:8000/hotels/12?checkin_date=2026-06-07&amp;checkout_date=2026-06-08&amp;guests=1" class="tm-resort-result-image">
+                                                    <img src="http://127.0.0.1:8000/storage/demo/hotels/hotel-3-hero.jpg" alt="Travel Mate Demo - Hoi An Lantern Resort">
+                                            </a>
+
+                    <div class="tm-resort-result-body">
+                        <div class="d-flex justify-content-between align-items-start gap-3">
+                            <div>
+                                <span>45 Nguyen Phuc Tan, Hoi An, Quang Nam</span>
+                                <h3>Travel Mate Demo - Hoi An Lantern Resort</h3>
+                            </div>
+                            <em><i class="bi bi-star-fill"></i>4.6</em>
+                        </div>
+
+                        <div class="tm-resort-tag-row">
+                                                            <b>Hồ bơi</b>
+                                                            <b>Nhà hàng</b>
+                                                            <b>Free Wi-Fi</b>
+                                                            <b>Bai do xe</b>
+                                                    </div>
+
+                        <div class="tm-resort-result-bottom">
+                            <div>
+                                <strong>Từ 685.000đ / đêm</strong>
+                                <small>3 hạng phòng phù hợp</small>
+                            </div>
+                            <a href="http://127.0.0.1:8000/hotels/12?checkin_date=2026-06-07&amp;checkout_date=2026-06-08&amp;guests=1">
+                                Xem phòng
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                            <article class="tm-resort-result-card" data-aos="fade-up" data-aos-delay="300">
+                    <a href="http://127.0.0.1:8000/hotels/11?checkin_date=2026-06-07&amp;checkout_date=2026-06-08&amp;guests=1" class="tm-resort-result-image">
+                                                    <img src="http://127.0.0.1:8000/storage/demo/hotels/hotel-2-hero.jpg" alt="Travel Mate Demo - Da Nang Ocean Pearl">
+                                            </a>
+
+                    <div class="tm-resort-result-body">
+                        <div class="d-flex justify-content-between align-items-start gap-3">
+                            <div>
+                                <span>88 Vo Nguyen Giap, Son Tra, Da Nang</span>
+                                <h3>Travel Mate Demo - Da Nang Ocean Pearl</h3>
+                            </div>
+                            <em><i class="bi bi-star-fill"></i>4.8</em>
+                        </div>
+
+                        <div class="tm-resort-tag-row">
+                                                            <b>Hồ bơi</b>
+                                                            <b>Spa</b>
+                                                            <b>Phong gym</b>
+                                                            <b>Gan bien</b>
+                                                    </div>
+
+                        <div class="tm-resort-result-bottom">
+                            <div>
+                                <strong>Từ 640.000đ / đêm</strong>
+                                <small>3 hạng phòng phù hợp</small>
+                            </div>
+                            <a href="http://127.0.0.1:8000/hotels/11?checkin_date=2026-06-07&amp;checkout_date=2026-06-08&amp;guests=1">
+                                Xem phòng
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                            <article class="tm-resort-result-card" data-aos="fade-up" data-aos-delay="0">
+                    <a href="http://127.0.0.1:8000/hotels/10?checkin_date=2026-06-07&amp;checkout_date=2026-06-08&amp;guests=1" class="tm-resort-result-image">
+                                                    <img src="http://127.0.0.1:8000/storage/demo/hotels/hotel-1-hero.jpg" alt="Travel Mate Demo - Hanoi Lakeside Boutique">
+                                            </a>
+
+                    <div class="tm-resort-result-body">
+                        <div class="d-flex justify-content-between align-items-start gap-3">
+                            <div>
+                                <span>12 Bao Khanh, Hoan Kiem, Ha Noi</span>
+                                <h3>Travel Mate Demo - Hanoi Lakeside Boutique</h3>
+                            </div>
+                            <em><i class="bi bi-star-fill"></i>4.5</em>
+                        </div>
+
+                        <div class="tm-resort-tag-row">
+                                                            <b>Nhà hàng</b>
+                                                            <b>Lễ tân 24/7</b>
+                                                            <b>Free Wi-Fi</b>
+                                                            <b>Dua don san bay</b>
+                                                    </div>
+
+                        <div class="tm-resort-result-bottom">
+                            <div>
+                                <strong>Từ 595.000đ / đêm</strong>
+                                <small>3 hạng phòng phù hợp</small>
+                            </div>
+                            <a href="http://127.0.0.1:8000/hotels/10?checkin_date=2026-06-07&amp;checkout_date=2026-06-08&amp;guests=1">
+                                Xem phòng
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                            <article class="tm-resort-result-card" data-aos="fade-up" data-aos-delay="60">
+                    <a href="http://127.0.0.1:8000/hotels/9?checkin_date=2026-06-07&amp;checkout_date=2026-06-08&amp;guests=1" class="tm-resort-result-image">
+                                                    <img src="http://127.0.0.1:8000/storage/demo/hotels/hotel-0-hero.jpg" alt="Travel Mate Demo - Sapa Cloud Retreat">
+                                            </a>
+
+                    <div class="tm-resort-result-body">
+                        <div class="d-flex justify-content-between align-items-start gap-3">
+                            <div>
+                                <span>31 Xuan Vien, Sa Pa, Lao Cai</span>
+                                <h3>Travel Mate Demo - Sapa Cloud Retreat</h3>
+                            </div>
+                            <em><i class="bi bi-star-fill"></i>4.7</em>
+                        </div>
+
+                        <div class="tm-resort-tag-row">
+                                                            <b>Lễ tân 24/7</b>
+                                                            <b>Free Wi-Fi</b>
+                                                            <b>Spa</b>
+                                                            <b>View nui</b>
+                                                    </div>
+
+                        <div class="tm-resort-result-bottom">
+                            <div>
+                                <strong>Từ 550.000đ / đêm</strong>
+                                <small>3 hạng phòng phù hợp</small>
+                            </div>
+                            <a href="http://127.0.0.1:8000/hotels/9?checkin_date=2026-06-07&amp;checkout_date=2026-06-08&amp;guests=1">
+                                Xem phòng
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                    </div>
+
+        <div class="mt-4" data-aos="fade-up">
+            
+        </div>
+    </div>
+</section>
+</main>
+
+<footer class="tm-resort-footer">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <a class="tm-resort-brand text-white text-decoration-none" href="http://127.0.0.1:8000/home">
+                    <span class="tm-resort-brand-mark">TM</span>
+                    <span>
+                        <strong>Travel Mate</strong>
+                        <small>Hotel & Resort Booking</small>
+                    </span>
+                </a>
+                <p class="mt-4 mb-0 text-white-50">
+                    Nền tảng đặt phòng khách sạn với quy trình giữ chỗ, thanh toán sandbox, hủy hoàn và quản lý lưu trú rõ ràng.
+                </p>
+            </div>
+
+            <div class="col-6 col-lg-2">
+                <h3>Khám phá</h3>
+                <a href="http://127.0.0.1:8000/home">Trang chủ</a>
+                <a href="http://127.0.0.1:8000/hotels">Khách sạn</a>
+                <a href="http://127.0.0.1:8000/#featured">Nổi bật</a>
+            </div>
+
+            <div class="col-6 col-lg-3">
+                <h3>Tài khoản</h3>
+                                    <a href="http://127.0.0.1:8000/login">Đăng nhập</a>
+                    <a href="http://127.0.0.1:8000/register">Đăng ký</a>
+                            </div>
+
+            <div class="col-lg-3">
+                <h3>Hỗ trợ</h3>
+                <p class="text-white-50 mb-2"><i class="bi bi-telephone me-2"></i>1900 9999</p>
+                <p class="text-white-50 mb-2"><i class="bi bi-envelope me-2"></i>support@travelmate.local</p>
+                <p class="text-white-50 mb-0"><i class="bi bi-geo-alt me-2"></i>Travel Mate Support Center</p>
+            </div>
+        </div>
+
+        <div class="tm-resort-footer-bottom">
+            <span>© 2026 Travel Mate.</span>
+            <span>Designed as a premium hotel booking experience.</span>
+        </div>
+    </div>
+</footer>
+
+<div class="tm-ai-chat js-ai-chat" data-endpoint="http://127.0.0.1:8000/ai/chat">
+    <button type="button" class="tm-ai-chat-toggle js-ai-chat-toggle" aria-label="Mở trợ lý Travel Mate">
+        <i class="bi bi-stars"></i>
+    </button>
+
+    <section class="tm-ai-chat-panel" aria-label="AI tư vấn Travel Mate">
+        <header>
+            <div>
+                <span>Travel Mate AI</span>
+                <strong>Trợ lý du lịch</strong>
+            </div>
+            <button type="button" class="js-ai-chat-close" aria-label="Đóng chatbot">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </header>
+
+        <div class="tm-ai-chat-messages js-ai-chat-messages">
+            <div class="tm-ai-message tm-ai-message-bot">
+                Chào bạn, mình là Travel Mate AI. Bạn có thể trò chuyện tự nhiên với mình về chuyến đi, khách sạn, lịch trình, thanh toán, hủy đơn hoặc cách dùng Travel Mate. Mình chỉ tư vấn, mọi đặt phòng/thanh toán vẫn cần bạn xác nhận trên giao diện.
+            </div>
+        </div>
+
+        <div class="tm-ai-chat-prompts" aria-label="Gợi ý câu hỏi nhanh">
+            <button type="button" class="js-ai-chat-prompt" data-message="Bạn có thể giúp mình làm gì?">Bạn làm được gì?</button>
+            <button type="button" class="js-ai-chat-prompt" data-message="Tìm khách sạn Đà Nẵng có hồ bơi">Gợi ý khách sạn</button>
+            <button type="button" class="js-ai-chat-prompt" data-message="Nếu mình đã thanh toán rồi muốn hủy thì sao?">Hủy/hoàn tiền</button>
+            <button type="button" class="js-ai-chat-prompt" data-message="Gợi ý lịch trình 2 ngày gần biển">Lịch trình 2 ngày</button>
+        </div>
+
+        <form class="tm-ai-chat-form js-ai-chat-form" method="POST" action="http://127.0.0.1:8000/ai/chat">
+            <input type="hidden" name="_token" value="1JnjOEmXfeiiB49RUMsbBpopDi9ugqVFwvmpHMO9" autocomplete="off">            <input
+                type="text"
+                name="message"
+                maxlength="600"
+                autocomplete="off"
+                placeholder="Nhập câu hỏi hoặc trò chuyện với Travel Mate AI..."
+                required
+            >
+            <button type="submit" aria-label="Gửi câu hỏi">
+                <i class="bi bi-send"></i>
+            </button>
+        </form>
+    </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
+<script src="http://127.0.0.1:8000/js/travel-mate-effects.js"></script>
+</body>
+</html>
