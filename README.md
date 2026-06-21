@@ -1,59 +1,194 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# KIỂM ĐỊNH PHẦN MỀM GIỮA KỲ
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Travel Mate – Website Đặt Phòng Khách Sạn Trực Tuyến
 
-## About Laravel
+## Giới thiệu
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Đây là đồ án môn Kiểm định phần mềm sử dụng hệ thống Travel Mate làm đối tượng kiểm thử.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Travel Mate là website đặt phòng khách sạn trực tuyến kết nối khách hàng với chủ cơ sở lưu trú và quản trị viên. Hệ thống hỗ trợ tìm kiếm khách sạn, đặt phòng, thanh toán, quản lý lưu trú, đánh giá và quản lý doanh thu.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Mục tiêu kiểm định
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+- Phân tích yêu cầu phần mềm (SRS).
+- Xây dựng kế hoạch kiểm thử (Test Plan).
+- Kiểm thử hộp trắng (White-box Testing).
+- Kiểm thử hộp đen (Black-box Testing).
+- Kiểm thử phân quyền và luồng nghiệp vụ.
+- Đánh giá chất lượng phần mềm theo ISO/IEC 25010.
+- Tổng hợp và phân tích kết quả kiểm thử.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## Công nghệ sử dụng
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- Laravel 12
+- PHP 8.2+
+- MySQL / MariaDB
+- Blade Template
+- Tailwind CSS
+- Vite
+- PHPUnit
+- Selenium IDE
+- XAMPP
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## Nội dung kiểm định
 
-## Contributing
+### Phần I: Software Requirement Specification (SRS)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Đặc tả yêu cầu phần mềm.
+- Mô tả bài toán.
+- Use Case Diagram.
+- ERD.
+- Class Diagram.
+- Activity Diagram.
+- Sequence Diagram.
 
-## Code of Conduct
+### Phần II: Test Plan
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- Phạm vi kiểm thử.
+- Môi trường kiểm thử.
+- Kỹ thuật kiểm thử.
+- Bộ Test Case.
+- Điều kiện nghiệm thu.
 
-## Security Vulnerabilities
+### Phần III: Thực hiện kiểm thử
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#### White-box Testing
+
+- Phân tích route.
+- Phân tích luồng đăng nhập.
+- Phân tích quy trình đặt phòng.
+- Phân tích chống overbooking.
+- Phân tích thanh toán VNPAY.
+- Kiểm thử PHPUnit.
+
+#### Black-box Testing
+
+- Public/Auth.
+- Customer.
+- Owner.
+- Admin.
+
+#### Selenium IDE
+
+- Tự động hóa đăng nhập.
+
+### Phần IV: Report
+
+- Tổng hợp kết quả kiểm thử.
+- Phân tích lỗi.
+- Đánh giá rủi ro.
+- Kết luận.
+
+---
+
+## Kết quả kiểm thử
+
+| Nhóm chức năng | Số test case | Đạt |
+|---------------|--------------|-----|
+| Public/Auth | 8 | 8 |
+| Customer | 18 | 18 |
+| Owner | 12 | 12 |
+| Admin | 12 | 12 |
+| Tổng cộng | 50 | 50 |
+
+Tỷ lệ đạt: 100%.
+
+---
+
+## Kỹ thuật kiểm thử
+
+- Static Review
+- White-box Testing
+- Black-box Testing
+- Boundary Value Analysis
+- Equivalence Partitioning
+- State Transition Testing
+- Role-based Testing
+
+---
+
+## Cấu trúc Repository
+
+```text
+kiemdinhgiuaki
+│
+├── BaoCao/
+├── SRS/
+├── TestPlan/
+├── TestCase/
+├── SeleniumIDE/
+├── Images/
+├── SourceCode/
+└── README.md
+```
+
+---
+
+## Vai trò hệ thống
+
+- Guest / Public
+- Customer
+- Owner
+- Admin
+
+---
+
+## Hướng dẫn chạy dự án
+
+### Cài đặt thư viện
+
+```bash
+composer install
+```
+
+### Tạo file môi trường
+
+```bash
+copy .env.example .env
+```
+
+### Sinh khóa ứng dụng
+
+```bash
+php artisan key:generate
+```
+
+### Chạy migration
+
+```bash
+php artisan migrate
+```
+
+### Khởi động server
+
+```bash
+php artisan serve
+```
+
+Truy cập:
+
+```text
+http://127.0.0.1:8000
+```
+
+---
+
+## Tài liệu tham khảo
+
+- ISO/IEC 25010
+- Laravel Documentation
+- PHPUnit Documentation
+- Selenium IDE Documentation
+- Tài liệu môn Kiểm định phần mềm
+
+---
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Dự án được thực hiện phục vụ mục đích học tập môn Kiểm định phần mềm.
